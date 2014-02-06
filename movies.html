@@ -12,11 +12,11 @@
 <body>
 
 
-<script src="../../spec/support/jquery.js"></script>
-<script src="../../spec/support/jquery.dataTables.js"></script>
-  <script src="../../spec/support/underscore.js"></script>
-  <script src="../../spec/support/backbone.js"></script>
-  <script src="../../backbone.localStorage.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="js/jquery.dataTables.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js"></script>
 
 
   <script src="movies.js"></script>
@@ -58,44 +58,29 @@
   <script type="text/template" id="edit-movie-template">
       <form class="edit-movie-form">
           <legend><%= movie ? 'Edit' : 'New' %> Movie</legend>
-          <ul>
-              <li>
           <label>Title</label>
           <input name="title" type="text" value="<%= movie ? movie.title : '' %>">
-              </li>
-              <li>
           <label>Year</label>
           <input name="year" type="text" value="<%= movie ? movie.year : '' %>">
-              </li>
-              <li>
           <label>Notes</label>
           <input name="notes" type="text" value="<%= movie ? movie.notes : '' %>">
-              </li>
-              <li>
           <label>Rating</label>
           <input name="rating" type="text" value="<%= movie ? movie.rating : '' %>">
-              </li>
-              <li>
           <label>Gross Income</label>
           <input name="gross" type="text" value="<%= movie ? movie.gross : '' %>">
-              </li>
-              <li>
           <label>Director</label>
           <input name="director" type="text" value="<%= movie ? movie.director : '' %>">
-              </li>
-              <li>
           <label>Genre</label>
           <input name="genre" type="text" value="<%= movie ? movie.genre : '' %>">
-              </li>
-          </ul>
           <% if(movie) { %>
           <input type="hidden" name="id" value="<%= movie.id %>" />
           <% }; %>
+
           <% if(actors) { %>
               <% _.each(actors, function(actor) { %>
 
-          <label><a href="#/edit_actor/<%= actor.id %>"><%= htmlEncode(actor.firstname) %> <%= htmlEncode(actor.lastname) %></label></a>
-                <input type="checkbox" name="actor_<%= htmlEncode(actor.id) %>" value="<%= htmlEncode(actor.id) %>"
+          <label><a href="#/edit_actor/<%= actor.id %>"><%= htmlEncode(actor.firstname) %> <%= htmlEncode(actor.lastname) %></a></label>
+                <input type="checkbox" name="actor_<%= htmlEncode(actor.id) %>" value="<%= htmlEncode(actor.id) %>">
 
                     <% if(associations) { %>
                         <% if(jQuery.inArray( actor.id, associations ) > -1){ %>
@@ -147,35 +132,24 @@
   <script type="text/template" id="edit-actor-template">
       <form class="edit-actor-form">
           <legend><%= actor ? 'Edit' : 'New' %> Actor</legend>
-          <ul>
-              <li>
           <label>First Name</label>
           <input name="firstname" type="text" value="<%= actor ? actor.firstname : '' %>">
-              </li>
-              <li>
           <label>Last Name</label>
           <input name="lastname" type="text" value="<%= actor ? actor.lastname : '' %>">
-              </li>
-              <li>
           <label>Gender</label>
           <input name="gender" type="text" value="<%= actor ? actor.gender : '' %>">
-              </li>
-              <li>
           <label>Date of Birth</label>
           <input name="dob" type="text" value="<%= actor ? actor.dob : '' %>">
-              </li>
-          </ul>
           <hr />
           <button type="submit" class="btn"><%= actor ? 'Update' : 'Create' %></button>
           <% if(actor) { %>
           <input type="hidden" name="id" value="<%= actor.id %>" />
           <% }; %>
-
           <% if(movies) { %>
           <% _.each(movies, function(movie) { %>
 
           <a href="#/edit/<%= movie.id %>"><label><%= htmlEncode(movie.title) %> </label></a>
-          <input type="checkbox" name="movie_<%= htmlEncode(movie.id) %>" value="<%= htmlEncode(movie.id) %>"
+          <input type="checkbox" name="movie_<%= htmlEncode(movie.id) %>" value="<%= htmlEncode(movie.id) %>">
 
               <% if(associations) { %>
                   <% if(jQuery.inArray( movie.id, associations ) > -1){ %>
